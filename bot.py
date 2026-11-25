@@ -4,6 +4,7 @@ from datetime import date
 import logging
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 from urllib.parse import urlparse
 
 from aiohttp import web
@@ -144,6 +145,7 @@ def create_router(bot, service, url, support):
 async def main():
     logging.basicConfig(level=logging.INFO)
     os.umask(0o077)
+    load_dotenv(Path(__file__).resolve().parent / ".env")
     token, key, url = (os.getenv(name, "") for name in ("TELEGRAM_BOT_TOKEN", "OPENAI_API_KEY", "WEBAPP_URL"))
     if not token or not key or urlparse(url).scheme != "https":
         raise SystemExit("Задайте TELEGRAM_BOT_TOKEN, OPENAI_API_KEY и публичный HTTPS WEBAPP_URL.")

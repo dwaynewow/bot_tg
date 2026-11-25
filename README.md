@@ -25,12 +25,9 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-Заполните `.env`. Файл содержит секреты и исключён из Git. Как минимум задайте `TELEGRAM_BOT_TOKEN`, `OPENAI_API_KEY`, `WEBAPP_URL` и свой `SUPPORT_CONTACT`. Для семейных платежей задайте согласованную вами цену в `FAMILY_PRICE_STARS`. Затем загрузите переменные и запустите процесс.
+Заполните `.env` рядом с `bot.py`. Файл содержит секреты и исключён из Git. Как минимум задайте `TELEGRAM_BOT_TOKEN`, `OPENAI_API_KEY`, `WEBAPP_URL` и свой `SUPPORT_CONTACT`. Для семейных платежей задайте согласованную вами цену в `FAMILY_PRICE_STARS`. Бот сам читает `.env` при запуске. Переменные, уже заданные в системе, имеют приоритет.
 
 ```bash
-set -a
-source .env
-set +a
 python bot.py
 ```
 
